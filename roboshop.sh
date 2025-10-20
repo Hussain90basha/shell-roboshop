@@ -9,9 +9,9 @@ do
 
     #Get pravite ip
     if [ $instance != "fronted" ]; then
-        IP=$(aws ec2 describe-instances --instance-ids i-0821f50e6d40e14c9 --query 'Reservations[0].Instances[0].PraviteIpAddress' --output text)
+        IP=$(aws ec2 describe-instances --instance-ids i-0b1cc02e2b36c6a74 --query 'Reservations[0].Instances[0].PraviteIpAddress' --output text)
     else
-        IP=$(aws ec2 describe-instances --instance-ids i-0821f50e6d40e14c9 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
+        IP=$(aws ec2 describe-instances --instance-ids i-0b1cc02e2b36c6a74 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
     fi
     echo "$instance: $IP"
 done
