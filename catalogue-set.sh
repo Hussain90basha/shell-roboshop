@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipeline 
+set -euo pipefail
 
 trap 'error "There is an error $LINENO, command is: $BASH_COMMAND"' ERR
 
