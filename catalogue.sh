@@ -74,10 +74,10 @@ systemctl enable catalogue &>>$LOG_FILE
 VALIDATE $? "Enable catalogue"
 
 cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo 
-VALIDATE $? "Copy mongo.repo"
+VALIDATE $? "Copy mongo repo"
 
 dnf install mongodb-mongosh -y &>>$LOG_FILE
-VALIDATE $? "Installing MongoDB client"
+VALIDATE $? "Install MongoDB client"
 
 mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
 VALIDATE $? "Load catalogue products"
