@@ -58,4 +58,4 @@ else
     echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
 fi    
  systemctl restart catalogue
- echo -e "Loading products and restarting catalogue ... $G SUCCESS $N
+ echo -e "Loading products and restarting catalogue ... $G SUCCESS $N"
