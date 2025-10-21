@@ -8,6 +8,7 @@ N="\e[0m"
 
 LOGS_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
+SCRIPT_DIR=$PWD
 MONGODB_HOST=mongodb.eliyas.fun
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
@@ -53,7 +54,7 @@ unzip /tmp/catalogue.zip &>>$LOG_FILE
 VALIDATE $? "Unzip catalogue"
 npm install &>>$LOG_FILE
 VALIDATE $? "Installing dependencies" 
-cp catalogue.service /etc/systemd/system/catalogue.service 
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
 VALIDATE $? "Copy systemctl service"
 systemctl daemon-reload
 systemctl enable catalogue &>>$LOG_FILE
