@@ -70,7 +70,7 @@ mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql &>>$LOG_FILE
 mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/app-user.sql &>>$LOG_FILE
 mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$LOG_FILE
 else
-    echo "Shipping data is already loaded ... $Y SKIPPING $N
+    echo "Shipping data is already loaded ... $Y SKIPPING $N"
 fi
 
 systemctl restart shipping
