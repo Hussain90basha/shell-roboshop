@@ -34,9 +34,11 @@ systemctl enable mysqld &>>$LOG_FILE
 VALIDATE $? "Enabling MYSQL Server"
 systemctl start mysqld &>>$LOG_FILE  
 VALIDATE $? "Starting MYSQL Server"
+
 mysql_secure_installation --set-root-pass RoboShop@1 &>>$LOG_FILE
-VALIDATE $? "Setting up root password"
+VALIDATE $? "Setting up Root password"
 
 END_TIME=$(date +%s)
 TOTAL_TIME=$(( $END_TIME - $START_TIME ))
 echo -e "Script exeucted in: $Y $TOTAL_TIME Seconds $N"
+ 

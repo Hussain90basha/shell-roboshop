@@ -55,7 +55,7 @@ curl -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip &>
 VALIDATE $? "Downloading user application"
 
 cd /app 
-VALIDATE $? "Changing user app"
+VALIDATE $? "Changing to app directory"
 
 rm -rf /app/*
 VALIDATE $? "Removing exsting code"

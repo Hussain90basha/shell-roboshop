@@ -32,10 +32,8 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
 ### NodeJS ###
 dnf module disable nodejs -y &>>$LOG_FILE
 VALIDATE $? "Disabling NodeJS"
-
 dnf module enable nodejs:20 -y &>>$LOG_FILE
 VALIDATE $? "Enable NodeJS 20"
-
 dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "Installing NodeJS"
 
@@ -44,8 +42,7 @@ if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE 
     VALIDATE $? "Creating system user"
 else 
-    echo -e 
-    "User already exist... $Y SKIPPING $N"
+    echo -e "User already exist... $Y SKIPPING $N"
 fi
 
 mkdir -p /app 
@@ -55,7 +52,7 @@ curl -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip &>
 VALIDATE $? "Downloading cart application"
 
 cd /app 
-VALIDATE $? "Changing cart app"
+VALIDATE $? "Changing to app directory"
 
 rm -rf /app/*
 VALIDATE $? "Removing exsting code"

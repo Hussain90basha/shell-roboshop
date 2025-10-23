@@ -30,15 +30,14 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
  fi
 }
 
-dnf install maven -y
+dnf install maven -y &>>$LOG_FILE
 
 id roboshop &>>$LOG_FILE
 if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE 
     VALIDATE $? "Creating system user"
 else 
-    echo -e 
-    "User already exist... $Y SKIPPING $N"
+    echo -e "User already exist... $Y SKIPPING $N"
 fi
 
 mkdir -p /app 
@@ -48,7 +47,7 @@ curl -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v
 VALIDATE $? "Downloading shipping application"
 
 cd /app 
-VALIDATE $? "Changing shipping app"
+VALIDATE $? "Changing to app directory"
 
 rm -rf /app/*
 VALIDATE $? "Removing exsting code"
@@ -67,9 +66,9 @@ dnf install mysql -y &>>$LOG_FILE
 
 mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities' &>>$LOG_FILE
 if [ $? -ne 0 ]; then
-mysql -h $MYSQL_HOST -uroot -pRoboShop@1 /app/db/schema.sql &>>$LOG_FILE
-mysql -h $MYSQL_HOST -uroot -pRoboShop@1 /app/db/app-user.sql &>>$LOG_FILE
-mysql -h $MYSQL_HOST -uroot -pRoboShop@1 /app/db/master-data.sql &>>$LOG_FILE
+mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql &>>$LOG_FILE
+mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/app-user.sql &>>$LOG_FILE
+mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$LOG_FILE
 else
     echo "Shipping data is already loaded ... $Y SKIPPING $N
 fi

@@ -37,8 +37,7 @@ if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE 
     VALIDATE $? "Creating system user"
 else 
-    echo -e 
-    "User already exist... $Y SKIPPING $N"
+    echo -e "User already exist... $Y SKIPPING $N"
 fi
 
 mkdir -p /app 
@@ -48,7 +47,7 @@ curl -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.
 VALIDATE $? "Downloading payment application"
 
 cd /app 
-VALIDATE $? "Changing payment app"
+VALIDATE $? "Changing to app directory"
 
 rm -rf /app/*
 VALIDATE $? "Removing exsting code"
